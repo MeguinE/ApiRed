@@ -1,8 +1,6 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
-
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\DashboardController as ControllersDashboardController;
@@ -21,7 +19,7 @@ Route::post('/login', [AuthController::class, 'login']);
     Route::apiResource('eventos', EventosController::class);
     Route::apiResource('asistencias', AsistenciasController::class);
     Route::apiResource('pagos', PagosController::class);
-    Route::apiResource('users', UserController::class);
+    Route::apiResource('users', UserController::class)->only(['index']);
     Route::apiResource('estatutos', EstatutosController::class);
 
     //Rutas personalizadas
