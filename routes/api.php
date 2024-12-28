@@ -24,3 +24,6 @@ Route::post('/login', [AuthController::class, 'login']);
     Route::apiResource('users', UserController::class);
     Route::apiResource('estatutos', EstatutosController::class);
 
+    //Rutas personalizadas
+    Route::get('asistencias/socio/{id}', [AsistenciasController::class, 'asistenciasPorSocio']);
+    Route::get('asistencia/evento/{id}', [AsistenciasController::class, 'asistenciasPorEvento']);
