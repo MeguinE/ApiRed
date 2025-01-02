@@ -1,9 +1,7 @@
 <?php
 namespace App\Services;
 
-use App\Models\Socios;
 use App\Models\Pago;
-use App\Models\Evento;
 use App\Models\Eventos;
 use App\Models\User;
 use Carbon\Carbon;
@@ -41,7 +39,7 @@ class DashboardServices
             ->whereHas('pagos', function ($query) {
                 $query->where('adeudo', '>', 0);
             })
-            ->get(['nombre', 'fecha_registro', 'id']); // Añadir ID para mejor identificación
+            ->get(['nombre', 'fecha_registro', 'id_socio']); // Añadir ID para mejor identificación
 
         return [
             'totalSocios' => $totalSocios,

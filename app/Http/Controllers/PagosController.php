@@ -19,7 +19,7 @@ class PagosController extends Controller
     {
         // Validación de los datos
         $request->validate([
-            'id_socio' => 'required|exists:users,id',
+            'id_socio' => 'required|exists:socios,id_socio',
             'fecha_pago' => 'required|date',
             'monto' => 'required|numeric',
             'adeudo' => 'required|numeric',

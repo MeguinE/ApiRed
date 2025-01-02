@@ -72,6 +72,7 @@ class AsistenciasController extends Controller
     }
 
     public function destroy($id)
+
     {
         $asistencia = Asistencia::findOrFail($id);
         $asistencia->delete();
@@ -93,6 +94,7 @@ class AsistenciasController extends Controller
     }
 
     public function asistenciasPorFecha($fecha)
+
     {
         // Obtener todas las asistencias de una fecha y devolverlas como JSON
         $asistencias = Asistencia::where('fecha_asistencia', $fecha)->get();
@@ -100,11 +102,11 @@ class AsistenciasController extends Controller
     }
 
     public function asistenciasPorEventoYSocio($id_evento, $id_socio)
+
     {
         // Obtener todas las asistencias de un evento y socio y devolverlas como JSON
         $asistencias = Asistencia::where('id_evento', $id_evento)->where('id_socio', $id_socio)->get();
         return response()->json($asistencias);
+        
     }
-
-    
 }

@@ -26,7 +26,8 @@ class AuthController extends Controller
             // Retornar solo la respuesta JSON con el token y un mensaje adicional
             return response()->json([
                 "message" => "Login successful", // Mensaje adicional
-                "token" => $token
+                "token" => $token, // Token de autenticación
+                "role" => $user->rol // Rol del usuario
             ], 200);
         } else {
             // Si las credenciales no son correctas, retornar un error de autenticación

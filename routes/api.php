@@ -13,20 +13,26 @@ use App\Http\Controllers\EstatutosController;
 
 
 Route::post('/login', [AuthController::class, 'login']);
+Route::group(['middleware' => ['auth:sanctum', 'role:admin']], function () {
 
-    Route::apiResource('login', AuthController::class)->only(['store']);
-    Route::apiResource('dashboard', ControllersDashboardController::class)->only(['index']);
+    //Route::apiResource('dashboard', ControllersDashboardController::class);
     Route::apiResource('eventos', EventosController::class);
     Route::apiResource('asistencias', AsistenciasController::class);
     Route::apiResource('pagos', PagosController::class);
-    Route::apiResource('users', UserController::class)->only(['index']);
+    Route::apiResource('users', UserController::class);
     Route::apiResource('estatutos', EstatutosController::class);
-
     //Rutas personalizadas
     Route::get('asistencias/socio/{id}', [AsistenciasController::class, 'asistenciasPorSocio']);
     Route::get('asistencia/evento/{id}', [AsistenciasController::class, 'asistenciasPorEvento']);
-
-    
+    Route::get('dashboard', [ControllersDashboardController::class, 'getDashboard']);
+    Route::get('eventos', [EventosController::class, 'index']);
+});
+/*
+Route::group(['middleware' => ['auth:sanctum', 'role:socio']], function () {
+    Route::get('eventos', [EventosController::class, 'index']);  // Socios solo pueden ver eventos
+    Route::get('estatutos', [EstatutosController::class, 'index']);  // Socios solo pueden ver estatutos
+});*/
+   
     /*
     
     Configiración de esta parte de los tokens de autenticación
